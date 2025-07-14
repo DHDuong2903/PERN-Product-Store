@@ -35,7 +35,7 @@ app.use(async (req, res, next) => {
     }
 
     // Check for spoofed bots (bot giả mạo)
-    if (decision.results.some((result) => result.isBot() && result.reason.isSpoofed())) {
+    if (decision.results.some((result) => result.isBot && result.reason.isSpoofed())) {
       res.status(403).json({ error: "Spoofed bots detected" });
       return;
     }

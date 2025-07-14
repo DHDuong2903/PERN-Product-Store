@@ -9,6 +9,7 @@ export const useProductStore = create((set, get) => ({
   products: [],
   loading: false,
   error: null,
+  currentProduct: null,
 
   // Form state
   formData: {
@@ -67,16 +68,49 @@ export const useProductStore = create((set, get) => ({
   deleteProduct: async (id) => {
     set({ loading: true });
     try {
-      await axios.delete(`${BASE_URL}/api/products/${id}`);
-      set((prev) => ({
-        products: prev.products.filter((product) => product.id !== id),
-        loading: false,
-        error: null,
-      }));
-      toast.success("Product deleted successfully");
+      if (window.confirm("Are you sure you want to delete this product?")) {
+        await axios.delete(`${BASE_URL}/api/products/${id}`);
+        set((prev) => ({
+          products: prev.products.filter((product) => product.id !== id),
+          loading: false,
+          error: null,
+        }));
+        toast.success("Product deleted successfully");
+      }
     } catch (error) {
       console.log("Error in deleting product:", error);
       toast.error("Something went wrong while deleting the product");
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchProductById: async (id) => {
+    set({ loading: true });
+    try {
+      const response = await axios.get(`${BASE_URL}/api/products/${id}`);
+      set({ currentProduct: response.data.data, formData: response.data.data, loading: false, error: null });
+    } catch (error) {
+      console.log("Error fetching product by ID:", error);
+      set({ error: "Something went wrong", loading: false, currentProduct: null });
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  updateProduct: async (id) => {
+    set({ loading: true });
+    try {
+      const { formData } = get();
+      await axios.put(`${BASE_URL}/api/products/${id}`, formData);
+      await get().fetchProducts();
+      get().resetFormData();
+      toast.success("Product updated successfully");
+      // Close the form
+      document.getElementById("add_product_modal")?.close();
+    } catch (error) {
+      console.log("Error in updating product:", error);
+      toast.error("Something went wrong while updating the product");
     } finally {
       set({ loading: false });
     }

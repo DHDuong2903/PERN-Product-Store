@@ -7,7 +7,7 @@ function Navbar() {
   const isHomePage = pathname === "/";
 
   return (
-    <div className="bg-base-100/80 backdrop-blur-lg border-b boder-base-conten/10 sticky top-0 z-50">
+    <div className="bg-base-100/80 backdrop-blur-lg border-b boder-base-content/10 sticky top-0 z-50">
       <div className="navbar px-4 min-h-[4rem] justify-between ">
         {/* Logo */}
         <div className="flex-1 lg:flex-none">

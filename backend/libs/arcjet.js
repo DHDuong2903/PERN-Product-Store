@@ -23,9 +23,9 @@ export const aj = arcjet({
     // Giới hạn gửi request
     tokenBucket({
       mode: "LIVE",
-      refillRate: 5, // Mỗi người sẽ được nạp 5 token
-      interval: 10, // Sau mỗi 10s, sẽ nạp 5 token vào bucket
-      capacity: 10, // Mỗi người có 10 request trong bucket
+      refillRate: 30, // Mỗi người sẽ được nạp 30 token
+      interval: 5, // Sau mỗi 5s, sẽ nạp 30 token vào bucket
+      capacity: 20, // Mỗi người có 20 request trong bucket
     }),
   ],
 });

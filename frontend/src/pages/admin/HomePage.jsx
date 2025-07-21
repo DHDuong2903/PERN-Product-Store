@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useProductStore } from "../stores/useProductStore";
+import { useProductStore } from "../../stores/useProductStore";
 import { PlusCircleIcon, RefreshCcwIcon, PackageIcon } from "lucide-react";
-import ProductCard from "../components/ProductCard";
-import AddProductModal from "../components/AddProductModal";
+import ProductCard from "../../components/ProductCard";
+import AddProductModal from "../../components/AddProductModal";
 
 function HomePage() {
   const { products, loading, error, fetchProducts } = useProductStore();
@@ -29,7 +29,7 @@ function HomePage() {
         {error && <div className="alert alert-error mb-8">{error}</div>}
 
         {products.length === 0 && !loading && (
-          <div className="flex justify-center items-center h-96 space-y-4">
+          <div className="flex flex-col justify-center items-center h-96 space-y-4">
             <div className="bg-base-100 rounded-full p-6">
               <PackageIcon className="size-12" />
             </div>

@@ -3,6 +3,8 @@ import { EditIcon, TrashIcon } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";
 
 function ProductCard({ product }) {
+  const isAdmin = false;
+
   const { deleteProduct } = useProductStore();
   return (
     <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
@@ -20,15 +22,17 @@ function ProductCard({ product }) {
 
         {/* Card Actions */}
 
-        <div className="card-actions justify-end mt-4">
-          <Link to={`/product/${product.id}`} className="btn btn-sm btn-info btn-outline">
-            <EditIcon className="size-4" />
-          </Link>
+        {isAdmin && (
+          <div className="card-actions justify-end mt-4">
+            <Link to={`/product/${product.id}`} className="btn btn-sm btn-info btn-outline">
+              <EditIcon className="size-4" />
+            </Link>
 
-          <button className="btn btn-sm btn-error btn-outline" onClick={() => deleteProduct(product.id)}>
-            <TrashIcon className="size-4" />
-          </button>
-        </div>
+            <button className="btn btn-sm btn-error btn-outline" onClick={() => deleteProduct(product.id)}>
+              <TrashIcon className="size-4" />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

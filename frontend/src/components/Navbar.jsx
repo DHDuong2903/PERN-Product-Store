@@ -1,7 +1,8 @@
 import { Link, useResolvedPath } from "react-router-dom";
-import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
+import { CircleUserRoundIcon, ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import { useProductStore } from "../stores/useProductStore";
+import UserSetting from "./UserSetting";
 
 function Navbar() {
   const { products } = useProductStore();
@@ -35,6 +36,8 @@ function Navbar() {
               </div>
             </div>
           )}
+
+          <UserSetting />
         </div>
       </div>
     </div>

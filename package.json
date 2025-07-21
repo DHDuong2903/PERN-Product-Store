@@ -14,6 +14,7 @@
   "description": "",
   "dependencies": {
     "@arcjet/node": "^1.0.0-beta.8",
+    "@clerk/express": "^1.7.6",
     "@neondatabase/serverless": "^1.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",

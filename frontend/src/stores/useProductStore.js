@@ -7,6 +7,7 @@ const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5000
 export const useProductStore = create((set, get) => ({
   // product state
   products: [],
+  allProducts: [],
   loading: false,
   error: null,
   currentProduct: null,
@@ -32,6 +33,10 @@ export const useProductStore = create((set, get) => ({
     });
   },
 
+  setProducts: (newProducts) => {
+    set({ products: newProducts });
+  },
+
   addProduct: async (e) => {
     e.preventDefault();
     set({ loading: true });
@@ -55,7 +60,7 @@ export const useProductStore = create((set, get) => ({
     set({ loading: true });
     try {
       const response = await axios.get(`${BASE_URL}/api/products`);
-      set({ products: response.data.data, loading: false, error: null });
+      set({ products: response.data.data, allProducts: response.data.data, loading: false, error: null });
     } catch (error) {
       if (error.status === 429) {
         set({ error: "Rate limit exceeded", products: [] });

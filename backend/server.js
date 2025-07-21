@@ -3,6 +3,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
+// import userRoutes from "./routes/userRoutes.js";
+// import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import { sql } from "./config/db.js";
 import { aj } from "./libs/arcjet.js";
@@ -14,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
 app.use(cors());
-app.use(express.json()); // Parse JSON bodies
+app.use(express.json()); 
 app.use(
   helmet({
     contentSecurityPolicy: false,
@@ -52,6 +54,8 @@ app.use(async (req, res, next) => {
   }
 });
 
+// app.use("/api/user", userRoutes);
+// app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 
 if (process.env.NODE_ENV === "production") {

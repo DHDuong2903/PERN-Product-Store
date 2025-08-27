@@ -3,9 +3,7 @@ import { EditIcon, TrashIcon } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";
 
 function ProductCard({ product }) {
-  const isAdmin = false;
-
-  const { deleteProduct } = useProductStore();
+  const { deleteProduct, admin } = useProductStore();
   return (
     <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
       {/* Product Image */}
@@ -22,7 +20,7 @@ function ProductCard({ product }) {
 
         {/* Card Actions */}
 
-        {isAdmin && (
+        {admin && (
           <div className="card-actions justify-end mt-4">
             <Link to={`/product/${product.id}`} className="btn btn-sm btn-info btn-outline">
               <EditIcon className="size-4" />

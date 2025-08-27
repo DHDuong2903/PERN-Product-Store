@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 
 function App() {
   const { theme } = useThemeStore();
+
   return (
     <div className="min-h-screen bg-base-200 transition-colors duration-300" data-theme={theme}>
       <Navbar></Navbar>

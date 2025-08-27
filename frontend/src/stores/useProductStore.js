@@ -11,6 +11,7 @@ export const useProductStore = create((set, get) => ({
   loading: false,
   error: null,
   currentProduct: null,
+  admin: true,
 
   // Form state
   formData: {
